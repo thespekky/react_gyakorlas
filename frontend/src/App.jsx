@@ -2,9 +2,10 @@ import { useState } from "react";
 import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
 /*import "./App.css";*/
-import Navbar from "./Components/Navbar.jsx";
-import Home from "./Components/Home.jsx";
-import Hozzaad from "./Components/Hozzaad.jsx";
+import Navbar from "./Components/Navbar/Navbar.jsx";
+import Home from "./Components/Pages/Home.jsx";
+import Hozzaad from "./Components/Pages/Hozzaad.jsx";
+import Elvesz from "./Components/Pages/Elvesz.jsx";
 import { Route, Routes } from "react-router-dom";
 
 function App() {
@@ -43,8 +44,11 @@ function App() {
     <>
       <Navbar />
       <Routes>
+        {/* ide kellene majd a login és log out és regisztrálás */}
+
         <Route path="/" element={<Home />} />
         <Route path="/hozzaad" element={<Hozzaad />} />
+        <Route path="/elvesz" element={<Elvesz />} />
       </Routes>
 
       {/* {listedDatas}*/}

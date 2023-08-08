@@ -1,9 +1,19 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+.navbar li:hover {
+  background: #777;
+}
 .active {
-  background-color: aquamarine;
+  background-color: #555;
 }
 * {
   box-sizing: border-box;
+}
+.navbar {
+  padding: 0 1rem;
+  gap: 2rem;
+}
+.title {
+  padding-bottom: 1rem;
 }
