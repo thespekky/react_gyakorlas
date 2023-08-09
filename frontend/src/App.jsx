@@ -6,6 +6,7 @@ import Navbar from "./Components/Navbar/Navbar.jsx";
 import Home from "./Components/Pages/Home.jsx";
 import Hozzaad from "./Components/Pages/Hozzaad.jsx";
 import Elvesz from "./Components/Pages/Elvesz.jsx";
+import Belepes from "./Components/Pages/Belepes.jsx";
 import { Route, Routes } from "react-router-dom";
 
 function App() {
@@ -49,6 +50,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/hozzaad" element={<Hozzaad />} />
         <Route path="/elvesz" element={<Elvesz />} />
+        <Route path="/belepes" element={<Belepes />} />
       </Routes>
 
       {/* {listedDatas}*/}
