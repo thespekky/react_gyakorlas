@@ -1,6 +1,8 @@
 import { useRef } from "react";
+import { useAuth } from "../AuthContext/AuthContext";
 
 export default function Belepes() {
+  const { login } = useAuth();
   const email = useRef();
   const password = useRef();
 
@@ -22,7 +24,7 @@ export default function Belepes() {
         <br />
         <input type="password" ref={password} name="password" />
         <br />
-        <input type="submit" value="Belépés" />
+        <input type="submit" value="Belépés" onClick={login} />
       </form>
     </div>
   );

@@ -8,6 +8,9 @@ import Hozzaad from "./Components/Pages/Hozzaad.jsx";
 import Elvesz from "./Components/Pages/Elvesz.jsx";
 import Belepes from "./Components/Pages/Belepes.jsx";
 import { Route, Routes } from "react-router-dom";
+import { AuthProvider } from "./Components/AuthContext/AuthContext.jsx";
+import Kilepes from "./Components/Pages/Kilepes.jsx";
+import { useAuth } from "./Components/AuthContext/AuthContext.jsx";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -43,16 +46,17 @@ function App() {
 
   return (
     <>
-      <Navbar />
-      <Routes>
-        {/* ide kellene majd a login és log out és regisztrálás */}
-
-        <Route path="/" element={<Home />} />
-        <Route path="/hozzaad" element={<Hozzaad />} />
-        <Route path="/elvesz" element={<Elvesz />} />
-        <Route path="/belepes" element={<Belepes />} />
-      </Routes>
-
+      <AuthProvider>
+        <Navbar />
+        <Routes>
+          {/* ide kellene majd a login és log out és regisztrálás */}
+          <Route path="/" element={<Home />} />
+          <Route path="/hozzaad" element={<Hozzaad />} />
+          <Route path="/elvesz" element={<Elvesz />} />
+          <Route path="/belepes" element={<Belepes />} />
+          <Route path="/kilepes" element={<Kilepes />} />
+        </Routes>
+      </AuthProvider>
       {/* {listedDatas}*/}
       {/*  <div>
         <a href="https://vitejs.dev" target="_blank">
