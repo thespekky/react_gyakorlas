@@ -10,8 +10,12 @@ export default function Navbar() {
         Ruha Bolt
       </Link>
       <ul className="p-0 m-0 list-none flex gap-3.5">
-        <CostumeLink to="/hozzaad">Hozzáadás</CostumeLink>
-        <CostumeLink to="/elvesz">Törlés</CostumeLink>
+        {isLoggedIn ? (
+          <CostumeLink to="/hozzaad">Hozzáadás</CostumeLink>
+        ) : (
+          <></>
+        )}
+        {isLoggedIn ? <CostumeLink to="/elvesz">Törlés</CostumeLink> : <></>}
         <CostumeLink
           to={!isLoggedIn ? "/belepes" : "/kilepes"}
           onClick={logout}

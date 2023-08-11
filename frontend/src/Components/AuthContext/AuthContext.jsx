@@ -21,7 +21,7 @@ export const AuthProvider = ({ children }) => {
     if (isLoggedIn) {
       console.log("Logout");
       setIsLoggedIn(false);
-      navigate("/hozzaad");
+      navigate("/");
     }
   };
 
