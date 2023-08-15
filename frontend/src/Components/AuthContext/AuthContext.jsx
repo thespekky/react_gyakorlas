@@ -5,9 +5,17 @@ const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false); // Kezdetben nincs bejelentkezve
+  const [loggedUser, userChange] = useState({
+    id: 0,
+    email: "",
+    password: "",
+    name: "",
+  });
   const navigate = useNavigate();
   useEffect(() => {
-    console.log(isLoggedIn);
+    if (isLoggedIn) {
+      navigate("/");
+    }
   }, [isLoggedIn]);
   const login = () => {
     // Itt lehetőséged van a bejelentkezési logikát megvalósítani
@@ -19,14 +27,25 @@ export const AuthProvider = ({ children }) => {
 
   const logout = () => {
     if (isLoggedIn) {
-      console.log("Logout");
+      // console.log("Logout");
       setIsLoggedIn(false);
       navigate("/");
     }
   };
+  const setUser = (datas) => {
+    const user = {
+      id: datas.id,
+      email: datas.email,
+      password: datas.password,
+      name: datas.name,
+    };
+    userChange(user);
+  };
 
   return (
-    <AuthContext.Provider value={{ isLoggedIn, login, logout }}>
+    <AuthContext.Provider
+      value={{ isLoggedIn, login, logout, loggedUser, setUser }}
+    >
       {children}
     </AuthContext.Provider>
   );

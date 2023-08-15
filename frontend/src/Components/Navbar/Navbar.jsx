@@ -7,7 +7,7 @@ export default function Navbar() {
   return (
     <nav className="navbar bg-stone-800 text-white flex justify-between items-stretch">
       <Link to="/" className="text-5xl title">
-        Ruha Bolt
+        Fő oldal
       </Link>
       <ul className="p-0 m-0 list-none flex gap-3.5">
         {isLoggedIn ? (
