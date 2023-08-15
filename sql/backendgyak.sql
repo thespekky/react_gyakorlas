@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Gép: 127.0.0.1
--- Létrehozás ideje: 2023. Aug 14. 19:29
+-- Létrehozás ideje: 2023. Aug 15. 21:02
 -- Kiszolgáló verziója: 10.4.17-MariaDB
 -- PHP verzió: 8.0.1
 
@@ -29,8 +29,8 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `gyaktabla` (
   `ID` int(11) NOT NULL,
-  `Nev` varchar(100) COLLATE utf8_hungarian_ci NOT NULL,
-  `jelszo` varchar(100) COLLATE utf8_hungarian_ci NOT NULL,
+  `name` varchar(100) COLLATE utf8_hungarian_ci NOT NULL,
+  `password` varchar(100) COLLATE utf8_hungarian_ci NOT NULL,
   `email` varchar(100) COLLATE utf8_hungarian_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_hungarian_ci;
 
@@ -38,8 +38,9 @@ CREATE TABLE `gyaktabla` (
 -- A tábla adatainak kiíratása `gyaktabla`
 --
 
-INSERT INTO `gyaktabla` (`ID`, `Nev`, `jelszo`, `email`) VALUES
-(1, 'ASD asd dsa', 'cucc', 'email@gmail.com');
+INSERT INTO `gyaktabla` (`ID`, `name`, `password`, `email`) VALUES
+(1, 'admin', 'admin', 'admin@gmail.com'),
+(2, 'test user', 'user', 'user@gmail.com');
 
 --
 -- Indexek a kiírt táblákhoz
@@ -59,7 +60,7 @@ ALTER TABLE `gyaktabla`
 -- AUTO_INCREMENT a táblához `gyaktabla`
 --
 ALTER TABLE `gyaktabla`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
