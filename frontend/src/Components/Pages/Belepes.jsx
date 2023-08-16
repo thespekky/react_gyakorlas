@@ -24,7 +24,7 @@ export default function Belepes() {
       .then((datas) => {
         //console.log(datas);
         if (datas.length === 0) {
-          alert("A bejelentkezési adatok nem egyeznek meg!");
+          alert("Nem található email cím!");
         } else {
           if (datas[0].password == Password.current.value) {
             setUser({
@@ -37,7 +37,12 @@ export default function Belepes() {
             loggedUser.password = Password.current.value;
             loggedUser.name = datas[0].name;
             loggedUser.id = datas[0].ID;*/
-            login();
+            login({
+              id: datas[0].ID,
+              email: Email.current.value,
+              password: Password.current.value,
+              name: datas[0].name,
+            });
           } else {
             alert("Rossz jelszó");
           }
