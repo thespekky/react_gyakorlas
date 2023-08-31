@@ -16,13 +16,18 @@ export default function Home() {
   }
   return (
     <>
-      <h1 className="text-3xl font-bold underline">
-        Home {isLoggedIn ? loggedUser.email : ""}
+      <h1 className="text-3xl font-bold text-center">
+        Üdvözöljük a fő oldalon {isLoggedIn ? loggedUser.email : ""}
       </h1>
-      <div className="Gomb">
-        <button onClick={() => Hozzaadszamot(1)} name="szamlako">
-          Számlálás:{count}
-        </button>
+      <div className="main_body flex justify-center">
+        <div>
+          <p>HI</p>
+          <div className="Gomb">
+            <button onClick={() => Hozzaadszamot(1)} name="szamlako">
+              Számlálás:{count}
+            </button>
+          </div>
+        </div>
       </div>
     </>
   );
