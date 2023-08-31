@@ -19,29 +19,30 @@ export default function Belepes() {
       body: JSON.stringify(body),
     })
       .then((res) => {
+        //console.log(res.json());
         return res.json();
       })
       .then((datas) => {
         //console.log(datas);
-        if (datas.length === 0) {
+        if (datas.status === false) {
           alert("Nem található email cím!");
         } else {
-          if (datas[0].password == Password.current.value) {
+          if (datas.password == Password.current.value) {
             setUser({
-              id: datas[0].ID,
+              id: datas.ID,
               email: Email.current.value,
               password: Password.current.value,
-              name: datas[0].name,
+              name: datas.name,
             });
             /*loggedUser.email = Email.current.value;
             loggedUser.password = Password.current.value;
             loggedUser.name = datas[0].name;
             loggedUser.id = datas[0].ID;*/
             login({
-              id: datas[0].ID,
+              id: datas.ID,
               email: Email.current.value,
               password: Password.current.value,
-              name: datas[0].name,
+              name: datas.name,
             });
           } else {
             alert("Rossz jelszó");
