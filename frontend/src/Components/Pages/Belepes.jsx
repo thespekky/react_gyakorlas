@@ -1,6 +1,7 @@
 import { useRef } from "react";
 import { useAuth } from "../AuthContext/AuthContext";
 
+
 export default function Belepes() {
   const { login } = useAuth();
   const { loggedUser, setUser } = useAuth();
@@ -19,30 +20,31 @@ export default function Belepes() {
       body: JSON.stringify(body),
     })
       .then((res) => {
-        //console.log(res.json());
+        //console.log(res.headers.authtoken);
         return res.json();
       })
       .then((datas) => {
-        //console.log(datas);
+        // console.log(datas.authtoken);
         if (datas.status === false) {
           alert("Nem található email cím!");
         } else {
-          if (datas.password == Password.current.value) {
+          if (datas.user.password == Password.current.value) {
             setUser({
-              id: datas.ID,
+              id: datas.user.ID,
               email: Email.current.value,
               password: Password.current.value,
-              name: datas.name,
+              name: datas.user.name,
             });
             /*loggedUser.email = Email.current.value;
             loggedUser.password = Password.current.value;
             loggedUser.name = datas[0].name;
             loggedUser.id = datas[0].ID;*/
             login({
-              id: datas.ID,
+              id: datas.user.ID,
               email: Email.current.value,
               password: Password.current.value,
-              name: datas.name,
+              name: datas.user.name,
+              authtoken: datas.authtoken,
             });
           } else {
             alert("Rossz jelszó");

@@ -32,7 +32,7 @@ export const AuthProvider = ({ children }) => {
     // Ha sikeres, akkor állítsd be az isLoggedIn állapotot true-ra.
 
     cookies.set("userData", datas, { path: "/" });
-    console.log(cookies.get("userData"));
+    //console.log(cookies.get("userData"));
     //console.log(datas);
     setIsLoggedIn(true);
   };
