@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useAuth } from "../AuthContext/AuthContext";
 import Cookies from "universal-cookie";
+import Cards from "./Home_cards/Cards";
 const cookies = new Cookies();
 
 export default function Home() {
@@ -49,6 +50,7 @@ export default function Home() {
               Teszt:{tesztertek}
             </button>
           </div>
+          <Cards />
         </div>
       </div>
     </>

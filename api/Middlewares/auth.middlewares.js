@@ -6,7 +6,9 @@ exports.auth = async (req, res, next) => {
   try {
     //const authHeader = req.headers["authorization"];
     //const authtoken = authHeader && authHeader.split(" ")[1];
-    const authtoken = req.headers.authtoken;
+    const authtoken = req.headers.authtoken
+      ? req.headers.authtoken
+      : req.headers.authorization.split(" ")[1];
     //console.log(authtoken);
     if (!authtoken) {
       return res.status(401).send({ message: "Nincs token" });

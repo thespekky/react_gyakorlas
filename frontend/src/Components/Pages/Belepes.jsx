@@ -1,7 +1,6 @@
 import { useRef } from "react";
 import { useAuth } from "../AuthContext/AuthContext";
 
-
 export default function Belepes() {
   const { login } = useAuth();
   const { loggedUser, setUser } = useAuth();

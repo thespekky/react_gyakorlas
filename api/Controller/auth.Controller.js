@@ -1,5 +1,6 @@
 const mysql = require("mysql");
 const User = require("../Models/UserModell");
+const Cards = require("../Models/CardsModell");
 const sequelize = require("../Models/dbModell");
 const { QueryTypes } = require("sequelize");
 const jwt = require("jsonwebtoken");
@@ -31,7 +32,7 @@ exports.login = async (req, res) => {
       const token = jwt.sign(
         { name: user.name },
         process.env.ACCESS_TOKEN_KEY,
-        { expiresIn: "1m" }
+        { expiresIn: "10m" }
       );
       if (!token) {
         console.log("token hiba");
@@ -49,4 +50,21 @@ exports.login = async (req, res) => {
 };
 exports.teszt = (req, res) => {
   res.send(req.user);
+};
+exports.cards = async (req, res) => {
+  try {
+    //console.log(req.body);
+    const cards = await Cards.findAll({
+      where: {
+        user_ID: req.body.ID,
+      },
+    });
+    if (cards) {
+      res.send({ cards: cards });
+    } else {
+      res.send({ message: "Cannot load user data/cannot find user" });
+    }
+  } catch (error) {
+    console.log(error);
+  }
 };

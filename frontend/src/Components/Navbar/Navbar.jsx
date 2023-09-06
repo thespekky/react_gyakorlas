@@ -27,18 +27,6 @@ export default function Navbar() {
   );
 }
 function CostumeLink({ to, children, ...props }) {
-  /*const { isLoggedIn, logout } = useAuth();
-  const navigate = useNavigate();
-  console.log(to);
-  console.log(to==="/kilepes");
-  function startlogout() {
-    navigate("/hozzaad");
-    console.log("nav hozzaad");
-    logout();
-  }
-  if (to === "/kilepes") {
-    startlogout();
-  }*/
   const resolvedPath = useResolvedPath(to);
   const isActive = useMatch({ path: resolvedPath.pathname, end: true });
   return (
