@@ -41,7 +41,6 @@ export default function Belepes() {
             login({
               id: datas.user.ID,
               email: Email.current.value,
-              password: Password.current.value,
               name: datas.user.name,
               authtoken: datas.authtoken,
             });
