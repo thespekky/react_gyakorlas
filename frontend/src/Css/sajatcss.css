@@ -51,6 +51,25 @@ body {
   border-radius: 20px;
   padding: 10px;
   width: 90%;
-  height: 80vh;
+  height: 85vh;
   background: #cacaca;
+}
+.cardsFlex {
+  justify-content: flex-start;
+  height: 400px;
+}
+.cardsContent {
+  min-width: 200px;
+  overflow-y: hidden;
+  overflow-y: scroll;
+}
+.cardsContent::-webkit-scrollbar {
+  display: none;
+}
+.pcontent {
+  max-height: 200px;
+  overflow-y: scroll;
+}
+.pcontent::-webkit-scrollbar {
+  display: none;
 }

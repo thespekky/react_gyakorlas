@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, Suspense } from "react";
 import { useAuth } from "../../AuthContext/AuthContext";
 import Cookies from "universal-cookie";
 import React from "react";
@@ -9,51 +9,16 @@ const Cards = () => {
   const [loading, setLoading] = useState(false);
   const { isLoggedIn, logout } = useAuth();
   const { loggedUser, setUser } = useAuth();
-  /*const fetchData = async () => {
-    const body = await {
-      email: loggedUser.email,
-      ID: loggedUser.id,
-    };
-    try {
-      setLoading(true);
-      await fetch("http://localhost:" + import.meta.env.VITE_PORT + "/cards", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${cookies.get("userData").authtoken}`,
-        },
-        body: JSON.stringify(body),
-      })
-        .then((res) => {
-          return res.json();
-        })
-        .then((data) => {
-          //console.log(data.cards);
-          if (data.cards) {
-            setCards(data.cards);
-          }
 
-          //console.log(cards);
-        });
-    } catch (e) {
-      console.error("Error fetching data:", e);
-    }
-    setLoading(false);
-  };*/
   useEffect(() => {
-    // console.log("useEffect cards");
     const fetchCards = async () => {
-      //console.log(cookies.get("userData"));
       const body = {
         email: cookies.get("userData").email,
         ID: cookies.get("userData").id,
       };
       try {
         setLoading(true);
-        //console.log("cards:" + body.email);
-        //console.log("waiting to fetch");
         const data = await fetchData(body);
-        //console.log(data);
         if (data.cards) {
           setCards(data.cards);
         }
@@ -66,20 +31,26 @@ const Cards = () => {
       fetchCards();
     }
   }, []);
+  /* <div className="border-rose-900 border-2 m-1 w-2/12 space-x-8 cardsContent h-56">
+              <h2>{card.title}</h2>
+              <p className="">{card.content}</p>
+            </div> */
   return (
     <>
-      <div>
-        {!loading ? (
-          cards.map((card) => (
-            <React.Fragment key={card.ID}>
-              <h2>{card.title}</h2>
-              <p>{card.content}</p>
-            </React.Fragment>
-          ))
-        ) : (
-          <p>No cards available</p>
-        )}
-        <p>asd</p>
+      <div className=" flex flex-row cardsFlex flex-wrap">
+        <Suspense fallback={<p>No cards available</p>}></Suspense>
+        {cards.map((card) => (
+          <React.Fragment key={card.ID}>
+            <div className="w-96 rounded overflow-hidden shadow-lg border-rose-900">
+              <div className="px-6 py-4">
+                <div className="font-bold text-xl mb-2">{card.title}</div>
+                <p className="text-gray-700 text-base pcontent">
+                  {card.content}
+                </p>
+              </div>
+            </div>
+          </React.Fragment>
+        ))}
       </div>
     </>
   );

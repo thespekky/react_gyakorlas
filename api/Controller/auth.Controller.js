@@ -32,7 +32,7 @@ exports.login = async (req, res) => {
       const token = jwt.sign(
         { name: user.name },
         process.env.ACCESS_TOKEN_KEY,
-        { expiresIn: "10m" }
+        { expiresIn: "1h" }
       );
       if (!token) {
         console.log("token hiba");
