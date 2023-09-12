@@ -44,19 +44,18 @@ body {
 .main_body {
   padding-top: 30px;
   width: 100%;
-  height: 100%;
+  height: 85.9vh;
   /* background-color: #555; */
 }
 .main_body > div {
   border-radius: 20px;
   padding: 10px;
   width: 90%;
-  height: 85vh;
+  height: 80vh;
   background: #cacaca;
 }
 .cardsFlex {
   justify-content: flex-start;
-  height: 400px;
 }
 .cardsContent {
   min-width: 200px;

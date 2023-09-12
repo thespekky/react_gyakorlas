@@ -41,7 +41,7 @@ const Cards = () => {
         <Suspense fallback={<p>No cards available</p>}></Suspense>
         {cards.map((card) => (
           <React.Fragment key={card.ID}>
-            <div className="w-96 rounded overflow-hidden shadow-lg border-rose-900">
+            <div className="w-96 rounded overflow-hidden shadow-lg border-rose-900 bg-slate-300 m-2">
               <div className="px-6 py-4">
                 <div className="font-bold text-xl mb-2">{card.title}</div>
                 <p className="text-gray-700 text-base pcontent">

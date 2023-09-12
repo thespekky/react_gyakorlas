@@ -10,6 +10,7 @@ import Belepes from "./Components/Pages/Belepes.jsx";
 import { Route, Routes } from "react-router-dom";
 import { AuthProvider } from "./Components/AuthContext/AuthContext.jsx";
 import Kilepes from "./Components/Pages/Kilepes.jsx";
+import Footer from "./Components/Footer/Footer";
 import { useAuth } from "./Components/AuthContext/AuthContext.jsx";
 
 function App() {
@@ -56,6 +57,7 @@ function App() {
           <Route path="/belepes" element={<Belepes />} />
           <Route path="/kilepes" element={<Kilepes />} />
         </Routes>
+        <Footer />
       </AuthProvider>
       {/* {listedDatas}*/}
       {/*  <div>
