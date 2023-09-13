@@ -1,4 +1,5 @@
 import { useEffect, useState, Suspense } from "react";
+import { Link } from "react-router-dom";
 import { useAuth } from "../../AuthContext/AuthContext";
 import Cookies from "universal-cookie";
 import React from "react";
@@ -40,7 +41,11 @@ const Cards = () => {
       <div className=" flex flex-row cardsFlex flex-wrap">
         <Suspense fallback={<p>No cards available</p>}></Suspense>
         {cards.map((card) => (
-          <React.Fragment key={card.ID}>
+          <Link
+            to={`/cards/${card.ID}`}
+            key={card.ID}
+            className="text-5xl title"
+          >
             <div className="w-96 rounded overflow-hidden shadow-lg border-rose-900 bg-slate-300 m-2">
               <div className="px-6 py-4">
                 <div className="font-bold text-xl mb-2">{card.title}</div>
@@ -49,7 +54,7 @@ const Cards = () => {
                 </p>
               </div>
             </div>
-          </React.Fragment>
+          </Link>
         ))}
       </div>
     </>

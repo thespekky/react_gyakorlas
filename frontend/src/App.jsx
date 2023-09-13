@@ -11,6 +11,7 @@ import { Route, Routes } from "react-router-dom";
 import { AuthProvider } from "./Components/AuthContext/AuthContext.jsx";
 import Kilepes from "./Components/Pages/Kilepes.jsx";
 import Footer from "./Components/Footer/Footer";
+import Card from "./Components/Pages/Home_cards/Card";
 import { useAuth } from "./Components/AuthContext/AuthContext.jsx";
 
 function App() {
@@ -56,6 +57,7 @@ function App() {
           <Route path="/elvesz" element={<Elvesz />} />
           <Route path="/belepes" element={<Belepes />} />
           <Route path="/kilepes" element={<Kilepes />} />
+          <Route path="/cards/:id" element={<Card />} />
         </Routes>
         <Footer />
       </AuthProvider>

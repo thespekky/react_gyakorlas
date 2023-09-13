@@ -6,6 +6,7 @@ exports.auth = async (req, res, next) => {
   try {
     //const authHeader = req.headers["authorization"];
     //const authtoken = authHeader && authHeader.split(" ")[1];
+    //console.log(req.headers.authtoken);
     const authtoken = req.headers.authtoken
       ? req.headers.authtoken
       : req.headers.authorization.split(" ")[1];

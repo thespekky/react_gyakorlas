@@ -26,4 +26,24 @@ export async function fetchData(body) {
     console.error("Error fetching data:", e);
   }
 }
+export async function GetData(id) {
+  try {
+    
+    const response = await fetch(
+      "http://localhost:" + import.meta.env.VITE_PORT + "/card/" + id,
+      {
+        method: "GET",
+        headers: { authtoken: cookies.get("userData").authtoken || null },
+       
+      }
+    );
+    if (!response.ok) {
+      throw new Error("Request failed");
+    }
+    const data = await response.json();
+    return data;
+  } catch (e) {
+    console.error("Error fetching data:", e);
+  }
+}
 //module.exports = fetchData;
