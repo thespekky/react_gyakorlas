@@ -11,10 +11,10 @@ const Card = () => {
   const [card, setCard] = useState([]);
   const { isLoggedIn, logout } = useAuth();
   useEffect(() => {
-    if (!isLoggedIn) {
+    if (!cookies.get("userData")) {
       navigate("/");
     }
-  }, [isLoggedIn]);
+  }, []);
   useEffect(() => {
     const fetchTheCard = async () => {
       const data = await GetData(id);
@@ -30,12 +30,60 @@ const Card = () => {
   }, []);
   const navigate = useNavigate();
   return (
-    <Suspense fallback={<div>Loading data...</div>}>
-      <div>
-        <h1>{card.title}</h1>
-        <section>{card.content}</section>
+    <>
+      <h1 className="text-3xl font-bold text-center">Adat Módosítása</h1>
+      <div className="main_body flex justify-center">
+        <div className="card_main">
+          <Suspense fallback={<div>Loading data...</div>}>
+            <label>A neve</label>
+            <div className="flex justify-center cardInputs">
+              <input
+                type="text"
+                name=""
+                className="cardInput"
+                id=""
+                defaultValue={card.title}
+              />
+
+              <button
+                className="bg-red-500 hover:bg-red-600 active:bg-red-700 focus:outline-none focus:ring focus:ring-red-300 rounded-md p-2 text-white"
+                type="button"
+              >
+                Vissza állít
+              </button>
+            </div>
+            <div>
+              <textarea
+                className="p-1 mt-2 w-full rounded-2xl h-64"
+                name=""
+                id=""
+                cols="170"
+                defaultValue={card.content}
+                rows="20"
+              ></textarea>
+            </div>
+            <div>
+              <button
+                className="bg-red-500 hover:bg-red-600 active:bg-red-700 focus:outline-none focus:ring focus:ring-red-300 rounded-md p-2 text-white"
+                type="button"
+              >
+                Text Vissza állítás
+              </button>
+            </div>
+            <div className="modositas">
+              <div>
+                <button
+                  type="button"
+                  className="bg-red-500  hover:bg-red-600 active:bg-red-700 focus:outline-none focus:ring focus:ring-red-300 rounded-md p-2 text-white"
+                >
+                  Módosítás
+                </button>
+              </div>
+            </div>
+          </Suspense>
+        </div>
       </div>
-    </Suspense>
+    </>
   );
 };
 export default Card;

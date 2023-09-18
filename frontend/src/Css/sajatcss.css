@@ -80,3 +80,31 @@ body {
 .pcontent::-webkit-scrollbar {
   display: none;
 }
+
+/*
+Card
+*/
+.cardInputs input[type="text"] {
+  height: 30px;
+  border-radius: 25px;
+  padding: 5px 10px 5px 10px;
+  height: 40px;
+  margin-right: 5px;
+}
+.card_main label {
+  display: block;
+  width: 100%;
+  text-align: center;
+  padding: 10px 0px 10px 0px;
+  font-weight: bold;
+  font-size: larger;
+}
+textarea {
+  resize: none;
+}
+.modositas {
+  position: relative;
+  top: 300px;
+  display: grid;
+  place-items: center;
+}
