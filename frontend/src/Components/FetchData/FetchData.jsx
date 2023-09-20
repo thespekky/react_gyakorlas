@@ -28,13 +28,11 @@ export async function fetchData(body) {
 }
 export async function GetData(id) {
   try {
-    
     const response = await fetch(
       "http://localhost:" + import.meta.env.VITE_PORT + "/card/" + id,
       {
         method: "GET",
         headers: { authtoken: cookies.get("userData").authtoken || null },
-       
       }
     );
     if (!response.ok) {
@@ -44,6 +42,26 @@ export async function GetData(id) {
     return data;
   } catch (e) {
     console.error("Error fetching data:", e);
+  }
+}
+export async function UniversalUpdate(path, body) {
+  try {
+    const response = await fetch(
+      "http://localhost:" + import.meta.env.VITE_PORT + path,
+      {
+        method: "PATCH",
+        headers: {
+          "Content-type": "application/json",
+          Authorization: `Bearer ${cookies.get("userData").authtoken || null}`,
+        },
+        body: JSON.stringify(body),
+      }
+    );
+    if (!response.ok) {
+      throw new Error("Update failed");
+    }
+  } catch (e) {
+    console.error("Error Updating data:", e);
   }
 }
 //module.exports = fetchData;

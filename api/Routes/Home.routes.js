@@ -8,4 +8,5 @@ routes.post("/login", AuthController.login);
 routes.get("/teszt", [authmiddlewares.auth], AuthController.teszt);
 routes.post("/cards", [authmiddlewares.auth], AuthController.cards);
 routes.get("/card/:id", [authmiddlewares.auth], CardsController.card);
+routes.patch("/card/update", [authmiddlewares.auth], CardsController.update);
 module.exports = routes;

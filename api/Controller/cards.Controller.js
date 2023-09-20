@@ -1,3 +1,4 @@
+const { where } = require("sequelize");
 const Cards = require("../Models/CardsModell");
 exports.card = async (req, res) => {
   try {
@@ -14,5 +15,15 @@ exports.card = async (req, res) => {
     }
   } catch (error) {
     console.log(error);
+  }
+};
+exports.update = async (req, res) => {
+  try {
+    const card = await Cards.update(
+      { title: req.body.Title, content: req.body.Content },
+      { where: { ID: req.body.ID } }
+    );
+  } catch (e) {
+    console.log(e);
   }
 };

@@ -7,6 +7,7 @@ exports.auth = async (req, res, next) => {
     //const authHeader = req.headers["authorization"];
     //const authtoken = authHeader && authHeader.split(" ")[1];
     //console.log(req.headers.authtoken);
+    //console.log("clog:" + req.headers.authorization.split(" ")[1]);
     const authtoken = req.headers.authtoken
       ? req.headers.authtoken
       : req.headers.authorization.split(" ")[1];
@@ -23,6 +24,7 @@ exports.auth = async (req, res, next) => {
       attributes: { exclude: ["password"] },
     });
     if (!searchedUser) {
+      //console.log("Nincs ilyen felhasználó");
       return res.send({ message: "Nincs ilyen felhasználó" });
     }
     req.user = searchedUser;

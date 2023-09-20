@@ -1,8 +1,8 @@
 import React from "react";
-import { useEffect, useState, Suspense } from "react";
+import { useEffect, useState, Suspense, useRef } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useAuth } from "../../AuthContext/AuthContext";
-import { GetData } from "../../FetchData/FetchData";
+import { GetData, UniversalUpdate } from "../../FetchData/FetchData";
 import Cookies from "universal-cookie";
 const cookies = new Cookies();
 const Card = () => {
@@ -10,6 +10,8 @@ const Card = () => {
   let id = useParams().id;
   const [card, setCard] = useState([]);
   const { isLoggedIn, logout } = useAuth();
+  const Title = useRef();
+  const Content = useRef();
   useEffect(() => {
     if (!cookies.get("userData")) {
       navigate("/");
@@ -29,6 +31,15 @@ const Card = () => {
     }
   }, []);
   const navigate = useNavigate();
+  async function Change() {
+    const body = {
+      ID: id,
+      Title: Title.current.value,
+      Content: Content.current.value,
+    };
+    //console.log(body);
+    await UniversalUpdate("/card/update", body);
+  }
   return (
     <>
       <h1 className="text-3xl font-bold text-center">Adat Módosítása</h1>
@@ -41,13 +52,17 @@ const Card = () => {
                 type="text"
                 name=""
                 className="cardInput"
-                id=""
+                id="title"
                 defaultValue={card.title}
+                ref={Title}
               />
 
               <button
                 className="bg-red-500 hover:bg-red-600 active:bg-red-700 focus:outline-none focus:ring focus:ring-red-300 rounded-md p-2 text-white"
                 type="button"
+                onClick={() => {
+                  document.getElementById("title").value = card.title;
+                }}
               >
                 Vissza állít
               </button>
@@ -56,16 +71,20 @@ const Card = () => {
               <textarea
                 className="p-1 mt-2 w-full rounded-2xl h-64"
                 name=""
-                id=""
+                id="textarea"
                 cols="170"
                 defaultValue={card.content}
                 rows="20"
+                ref={Content}
               ></textarea>
             </div>
             <div>
               <button
                 className="bg-red-500 hover:bg-red-600 active:bg-red-700 focus:outline-none focus:ring focus:ring-red-300 rounded-md p-2 text-white"
                 type="button"
+                onClick={() => {
+                  document.getElementById("textarea").value = card.content;
+                }}
               >
                 Text Vissza állítás
               </button>
@@ -75,6 +94,7 @@ const Card = () => {
                 <button
                   type="button"
                   className="bg-red-500  hover:bg-red-600 active:bg-red-700 focus:outline-none focus:ring focus:ring-red-300 rounded-md p-2 text-white"
+                  onClick={Change}
                 >
                   Módosítás
                 </button>
