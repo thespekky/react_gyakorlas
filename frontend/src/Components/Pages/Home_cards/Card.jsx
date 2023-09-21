@@ -1,13 +1,22 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useEffect, useState, Suspense, useRef } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useAuth } from "../../AuthContext/AuthContext";
 import { GetData, UniversalUpdate } from "../../FetchData/FetchData";
+import { Alert } from "../../Alert/Alert";
 import Cookies from "universal-cookie";
+import AlertContext from "../../Alert/alert.context";
 const cookies = new Cookies();
 const Card = () => {
   //console.log(useParams().id);
   let id = useParams().id;
+  const [, sertAlert] = useContext(AlertContext);
+  const showAlert = (text, type) => {
+    sertAlert({
+      text,
+      type,
+    });
+  };
   const [card, setCard] = useState([]);
   const { isLoggedIn, logout } = useAuth();
   const Title = useRef();
@@ -38,11 +47,18 @@ const Card = () => {
       Content: Content.current.value,
     };
     //console.log(body);
-    await UniversalUpdate("/card/update", body);
+
+    const data = await UniversalUpdate("/card/update", body);
+    if (data) {
+      showAlert(data.message, "success");
+    }
+
+    //console.log(data);
   }
   return (
     <>
       <h1 className="text-3xl font-bold text-center">Adat Módosítása</h1>
+      <Alert />
       <div className="main_body flex justify-center">
         <div className="card_main">
           <Suspense fallback={<div>Loading data...</div>}>
@@ -68,6 +84,7 @@ const Card = () => {
               </button>
             </div>
             <div>
+              <label>A Tartalma</label>
               <textarea
                 className="p-1 mt-2 w-full rounded-2xl h-64"
                 name=""

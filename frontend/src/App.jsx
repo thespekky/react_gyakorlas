@@ -13,6 +13,7 @@ import Kilepes from "./Components/Pages/Kilepes.jsx";
 import Footer from "./Components/Footer/Footer";
 import Card from "./Components/Pages/Home_cards/Card";
 import { useAuth } from "./Components/AuthContext/AuthContext.jsx";
+import { AlertProvider } from "./Components/Alert/alert.context";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -49,17 +50,19 @@ function App() {
   return (
     <>
       <AuthProvider>
-        <Navbar />
-        <Routes>
-          {/* ide kellene majd a login és log out és regisztrálás */}
-          <Route path="/" element={<Home />} />
-          <Route path="/hozzaad" element={<Hozzaad />} />
-          <Route path="/elvesz" element={<Elvesz />} />
-          <Route path="/belepes" element={<Belepes />} />
-          <Route path="/kilepes" element={<Kilepes />} />
-          <Route path="/cards/:id" element={<Card />} />
-        </Routes>
-        <Footer />
+        <AlertProvider>
+          <Navbar />
+          <Routes>
+            {/* ide kellene majd a login és log out és regisztrálás */}
+            <Route path="/" element={<Home />} />
+            <Route path="/hozzaad" element={<Hozzaad />} />
+            <Route path="/elvesz" element={<Elvesz />} />
+            <Route path="/belepes" element={<Belepes />} />
+            <Route path="/kilepes" element={<Kilepes />} />
+            <Route path="/cards/:id" element={<Card />} />
+          </Routes>
+          <Footer />
+        </AlertProvider>
       </AuthProvider>
       {/* {listedDatas}*/}
       {/*  <div>

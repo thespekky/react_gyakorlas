@@ -23,6 +23,7 @@ exports.update = async (req, res) => {
       { title: req.body.Title, content: req.body.Content },
       { where: { ID: req.body.ID } }
     );
+    res.send({ message: "Sikeres feltöltés" });
   } catch (e) {
     console.log(e);
   }

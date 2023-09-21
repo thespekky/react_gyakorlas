@@ -60,6 +60,7 @@ export async function UniversalUpdate(path, body) {
     if (!response.ok) {
       throw new Error("Update failed");
     }
+    return response.json();
   } catch (e) {
     console.error("Error Updating data:", e);
   }
